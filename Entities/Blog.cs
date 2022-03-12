@@ -15,5 +15,9 @@ namespace Entities
         public string SeoUrl { get; set; }
         public int CategoryID { get; set; }
         public Category Category { get; set; }
+        public int CommentID { get; set; }
+        public Comment Comment { get; set; }
+        public string K205UserId { get; set; }
+        public K205User K205User { get; set; }
     }
 }

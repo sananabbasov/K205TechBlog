@@ -8,8 +8,11 @@ namespace Entities
 {
     public class Comment : Base
     {
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string WebSite { get; set; }
         public string CommentText { get; set; }
-        public string K205UserId { get; set; }
-        public K205User K205User { get; set; }
+        public bool IsSuccess { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

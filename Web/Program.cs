@@ -1,7 +1,23 @@
+using DataAccess;
+using Entities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+
+
+var connectingString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<BlogDbContext>
+    (options => options.UseSqlServer(connectingString));
+
+builder.Services.AddDefaultIdentity<K205User>().AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<BlogDbContext>();
+
+
 
 var app = builder.Build();
 
