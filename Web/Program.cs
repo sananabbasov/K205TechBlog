@@ -1,3 +1,5 @@
+using Business.Abstract;
+using Business.Concrete;
 using DataAccess;
 using Entities;
 using Microsoft.AspNetCore.Identity;
@@ -17,7 +19,8 @@ builder.Services.AddDbContext<BlogDbContext>
 builder.Services.AddDefaultIdentity<K205User>().AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<BlogDbContext>();
 
-
+builder.Services.AddScoped<ICategoryManager, CategoryManager>();
+builder.Services.AddScoped<IBlogManager, BlogManager>();
 
 var app = builder.Build();
 
@@ -35,6 +38,14 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+      name: "areas",
+      pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+    );
+});
 
 app.MapControllerRoute(
     name: "default",
