@@ -9,10 +9,12 @@ namespace Web.Areas.dashboard.Controllers
     public class BlogController : Controller
     {
         private readonly IBlogManager _blogManager;
+        private readonly ICategoryManager _categoryManager;
 
-        public BlogController(IBlogManager blogManager)
+        public BlogController(IBlogManager blogManager, ICategoryManager categoryManager)
         {
             _blogManager = blogManager;
+            _categoryManager = categoryManager;
         }
 
         // GET: BlogController
@@ -30,7 +32,9 @@ namespace Web.Areas.dashboard.Controllers
 
         // GET: BlogController/Create
         public IActionResult Create()
-        {
+        {   
+           
+            ViewBag.Categories = _categoryManager.GetAll();
             return View();
         }
 

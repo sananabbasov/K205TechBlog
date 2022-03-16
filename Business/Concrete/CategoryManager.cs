@@ -18,6 +18,8 @@ namespace Business.Concrete
             _context = context;
         }
 
+
+       
         public void Create(Category category)
         {
             category.UpdateDate = DateTime.Now;
